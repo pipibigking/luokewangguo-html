@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>洛克王国 · 异色精灵代肝</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+    
+    :root {
+      --color-primary: #4DD0E1;
+      --color-secondary: #FFB74D;
+      --color-accent: #7C4DFF;
+      --color-dark: #1A237E;
+      --color-bg: #E1F5FE;
+      --color-card: #FFFFFF;
+      --color-text: #1A237E;
+      --color-title: #00838F;
+      
+      --halftone-bg: radial-gradient(circle, rgba(77, 208, 225, 0.1) 2px, transparent 2px);
+    }
+    
+    body {
+      font-family: 'ZCOOL KuaiLe', 'Microsoft YaHei', cursive, sans-serif;
+      background: linear-gradient(135deg, #E1F5FE 0%, #F3E5F5 50%, #FFF8E1 100%);
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: var(--halftone-bg);
+      background-size: 30px 30px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 30px;
+      background: linear-gradient(135deg, #1A237E 0%, #283593 50%, #1A237E 100%);
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(26, 35, 126, 0.4), 0 0 0 4px #4DD0E1;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: radial-gradient(circle at 20% 30%, rgba(77, 208, 225, 0.15) 0%, transparent 30%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 183, 77, 0.1) 0%, transparent 25%);
+    }
+    
+    .header::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(77, 208, 225, 0.03) 2px,
+        rgba(77, 208, 225, 0.03) 4px
+      );
+    }
+    
+    .title-wrapper {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .cute-title {
+      display: inline-block;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      font-weight: bold;
+      color: #FFB74D;
+      text-shadow: 
+        3px 3px 0 #7C4DFF,
+        6px 6px 0 #1A237E,
+        9px 9px 0 rgba(26, 35, 126, 0.3),
+        0 0 30px rgba(255, 183, 77, 0.5);
+      position: relative;
+      animation: bounce 2s ease-in-out infinite;
+      letter-spacing: 6px;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+    
+    .main-title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .main-title {
+      display: inline-block;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      background: linear-gradient(135deg, #FF6B9D 0%, #FFB6C1 50%, #FFD1DC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: bold;
+      letter-spacing: 4px;
+      position: relative;
+    }
+    
+    .decoration-star,
+    .decoration-heart {
+      font-size: 2em;
+      display: inline-block;
+    }
+    
+    .decoration-star {
+      animation: sparkle-star 1.2s ease-in-out infinite;
+    }
+    
+    .decoration-heart {
+      animation: sparkle-heart 1.2s ease-in-out infinite 0.6s;
+    }
+    
+    @keyframes sparkle-star {
+      0%, 100% { opacity: 0.5; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    
+    @keyframes sparkle-heart {
+      0%, 100% { opacity: 1; transform: scale(1.2); }
+      50% { opacity: 0.5; transform: scale(0.9); }
+    }
+    
+    .filter-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding: 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 6px 25px rgba(77, 208, 225, 0.2);
+      border: 3px solid #4DD0E1;
+      align-items: center;
+    }
+    
+    .search-box {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+    
+    .search-box input {
+      width: 100%;
+      padding: 14px 16px 14px 48px;
+      border: 3px solid #4DD0E1;
+      border-radius: 16px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: #00838F;
+      background: #E1F5FE;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    
+    .search-box input:focus {
+      border-color: #FFB74D;
+      box-shadow: 0 0 0 4px rgba(255, 183, 77, 0.2);
+    }
+    
+    .search-box::before {
+      content: '🔍';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.3rem;
+    }
+    
+    .filter-select {
+      padding: 14px 44px 14px 16px;
+      border: 3px solid #4DD0E1;
+      border-radius: 16px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: #00838F;
+      background: #E1F5FE;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'%3E%3Cpath fill='%2300838F' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      transition: all 0.3s ease;
+    }
+    
+    .filter-select:focus {
+      border-color: #FFB74D;
+      box-shadow: 0 0 0 4px rgba(255, 183, 77, 0.2);
+    }
+    
+    .sort-btn {
+      padding: 14px 24px;
+      border: 3px solid #4DD0E1;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #E1F5FE 0%, #FFFFFF 100%);
+      font-family: inherit;
+      font-size: 1rem;
+      color: #00838F;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    
+    .sort-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(77, 208, 225, 0.3);
+      border-color: #FFB74D;
+    }
+    
+    .sort-btn.active {
+      background: linear-gradient(135deg, #1A237E 0%, #283593 100%);
+      color: #FFB74D;
+      border-color: #FFB74D;
+    }
+    
+    .sort-btn .arrow {
+      transition: transform 0.3s ease;
+    }
+    
+    .result-count {
+      font-size: 0.95rem;
+      color: #00838F;
+      padding: 10px 20px;
+      background: rgba(77, 208, 225, 0.15);
+      border-radius: 14px;
+      font-weight: bold;
+    }
+    
+    .loading, .error {
+      text-align: center;
+      padding: 60px 40px;
+      font-size: 1.4rem;
+    }
+    
+    .loading {
+      color: #00838F;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid #B2EBF2;
+      border-top-color: #00838F;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      box-shadow: 0 0 20px rgba(0, 131, 143, 0.4);
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .error {
+      color: #E53935;
+      background: rgba(229, 57, 53, 0.1);
+      border-radius: 16px;
+      margin: 20px;
+    }
+    
+    .pet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    
+    .pet-grid.fading {
+      opacity: 0;
+    }
+    
+    .pet-card {
+      border-radius: 20px;
+      padding: 16px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      border: 3px solid;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    
+    .pet-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      opacity: 0.3;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    
+    .pet-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 40px;
+    }
+    
+    .pet-card:hover::before {
+      transform: scale(2);
+      opacity: 0.5;
+    }
+    
+    .pet-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: contain;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      border: 2px dashed;
+      padding: 10px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .pet-card:hover .pet-image {
+      transform: scale(1.05);
+    }
+    
+    .pet-name {
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .pet-price {
+      font-size: 1.3rem;
+      text-align: center;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 20px;
+      display: inline-block;
+      margin: 0 auto;
+      box-shadow: 0 3px 12px;
+      border: 2px solid;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .pet-card.season {
+      background: linear-gradient(145deg, #FFFFFF 0%, #E1F5FE 100%);
+      border-color: #4DD0E1;
+      box-shadow: 0 6px 25px rgba(77, 208, 225, 0.12);
+    }
+    
+    .pet-card.season::before {
+      background: radial-gradient(circle, rgba(77, 208, 225, 0.3) 0%, transparent 70%);
+    }
+    
+    .pet-card.season:hover {
+      border-color: #00838F;
+      box-shadow: 0 15px 40px rgba(77, 208, 225, 0.3);
+    }
+    
+    .pet-card.season .pet-image {
+      background: linear-gradient(135deg, #E1F5FE 0%, #B2EBF2 100%);
+      border-color: #4DD0E1;
+    }
+    
+    .pet-card.season .pet-name {
+      color: #00838F;
+      text-shadow: 1px 1px 2px rgba(77, 208, 225, 0.3);
+    }
+    
+    .pet-card.season .pet-price {
+      background: linear-gradient(135deg, #E1F5FE 0%, #B2EBF2 100%);
+      color: #4DD0E1;
+      border-color: #00838F;
+      box-shadow: 0 3px 12px rgba(77, 208, 225, 0.2);
+    }
+    
+    .pet-card.adventure {
+      background: linear-gradient(145deg, #FFFFFF 0%, #F3E5F5 100%);
+      border-color: #7C4DFF;
+      box-shadow: 0 6px 25px rgba(124, 77, 255, 0.12);
+    }
+    
+    .pet-card.adventure::before {
+      background: radial-gradient(circle, rgba(124, 77, 255, 0.3) 0%, transparent 70%);
+    }
+    
+    .pet-card.adventure:hover {
+      border-color: #5C6BC0;
+      box-shadow: 0 15px 40px rgba(124, 77, 255, 0.3);
+    }
+    
+    .pet-card.adventure .pet-image {
+      background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+      border-color: #7C4DFF;
+    }
+    
+    .pet-card.adventure .pet-name {
+      color: #5C6BC0;
+      text-shadow: 1px 1px 2px rgba(124, 77, 255, 0.3);
+    }
+    
+    .pet-card.adventure .pet-price {
+      background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+      color: #7C4DFF;
+      border-color: #5C6BC0;
+      box-shadow: 0 3px 12px rgba(124, 77, 255, 0.2);
+    }
+    
+    .pet-card.activity {
+      background: linear-gradient(145deg, #FFFFFF 0%, #FFF8E1 100%);
+      border-color: #FFB74D;
+      box-shadow: 0 6px 25px rgba(255, 183, 77, 0.12);
+    }
+    
+    .pet-card.activity::before {
+      background: radial-gradient(circle, rgba(255, 183, 77, 0.3) 0%, transparent 70%);
+    }
+    
+    .pet-card.activity:hover {
+      border-color: #FF8F00;
+      box-shadow: 0 15px 40px rgba(255, 183, 77, 0.3);
+    }
+    
+    .pet-card.activity .pet-image {
+      background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+      border-color: #FFB74D;
+    }
+    
+    .pet-card.activity .pet-name {
+      color: #FF8F00;
+      text-shadow: 1px 1px 2px rgba(255, 183, 77, 0.3);
+    }
+    
+    .pet-card.activity .pet-price {
+      background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+      color: #FFB74D;
+      border-color: #FF8F00;
+      box-shadow: 0 3px 12px rgba(255, 183, 77, 0.2);
+    }
+    
+    .battle-pass-wrapper {
+      margin-top: 32px;
+      display: block;
+    }
+    
+    .battle-pass-section {
+      background: linear-gradient(145deg, #1A237E 0%, #283593 100%);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 12px 40px rgba(26, 35, 126, 0.4);
+      border: 3px solid #FFB74D;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .battle-pass-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 183, 77, 0.05) 10px,
+        rgba(255, 183, 77, 0.05) 20px
+      );
+    }
+    
+    .battle-pass-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .battle-pass-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #FFB74D 0%, #FF8F00 100%);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 183, 77, 0.4); }
+      50% { transform: scale(1.1); box-shadow: 0 0 30px rgba(255, 183, 77, 0.6); }
+    }
+    
+    .battle-pass-header h3 {
+      color: #FFB74D;
+      font-size: 1.4rem;
+      letter-spacing: 3px;
+    }
+    
+    .battle-pass-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .battle-pass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 16px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 2px solid rgba(255, 183, 77, 0.3);
+      text-align: center;
+    }
+    
+    .battle-pass-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #FFB74D;
+      box-shadow: 0 10px 30px rgba(255, 183, 77, 0.2);
+    }
+    
+    .battle-pass-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      padding: 8px;
+    }
+    
+    .battle-pass-name {
+      color: #FFB74D;
+      font-size: 0.95rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    
+    .battle-pass-price {
+      color: #FFF;
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #FFB74D 0%, #FF8F00 100%);
+      padding: 6px 14px;
+      border-radius: 16px;
+      display: inline-block;
+    }
+    
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(26, 35, 126, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+    }
+    
+    .modal-overlay.active {
+      display: flex;
+    }
+    
+    .modal-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      padding: 0 70px;
+    }
+    
+    .modal-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      color: #00838F;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+    
+    .modal-nav-btn:hover:not(.disabled) {
+      opacity: 1;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 20px rgba(77, 208, 225, 0.4);
+    }
+    
+    .modal-nav-btn.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      filter: grayscale(50%);
+    }
+    
+    .modal-nav-btn.prev {
+      left: 0;
+    }
+    
+    .modal-nav-btn.next {
+      right: 0;
+    }
+    
+    .modal-content {
+      background: linear-gradient(135deg, #FFFFFF 0%, #E1F5FE 100%);
+      padding: 30px;
+      border-radius: 24px;
+      max-width: 90vw;
+      max-height: 90vh;
+      text-align: center;
+      cursor: default;
+      box-shadow: 0 20px 60px rgba(26, 35, 126, 0.3);
+      border: 4px solid #4DD0E1;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+    
+    .modal-content.slide-left {
+      transform: translateX(-30px);
+      opacity: 0;
+    }
+    
+    .modal-content.slide-right {
+      transform: translateX(30px);
+      opacity: 0;
+    }
+    
+    .modal-content.fade-in {
+      animation: fadeIn 0.3s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .modal-image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #E1F5FE 0%, #F3E5F5 100%);
+      border-radius: 16px;
+      border: 3px dashed #B2EBF2;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    
+    .modal-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    
+    .modal-name {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #00838F;
+      text-shadow: 2px 2px 4px rgba(77, 208, 225, 0.3);
+    }
+    
+    .modal-price {
+      font-size: 1.4rem;
+      color: #7C4DFF;
+      font-weight: bold;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #E1F5FE 0%, #B2EBF2 100%);
+      padding: 10px 24px;
+      border-radius: 30px;
+      display: inline-block;
+      border: 2px solid #4DD0E1;
+    }
+    
+    .modal-counter {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.9rem;
+      color: white;
+      background: rgba(26, 35, 126, 0.8);
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #E53935 0%, #C62828 100%);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      box-shadow: 0 4px 15px rgba(229, 57, 53, 0.4);
+      transition: all 0.3s ease;
+      z-index: 20;
+    }
+    
+    .close-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(229, 57, 53, 0.5);
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 60px 40px;
+      color: #00838F;
+      font-size: 1.2rem;
+    }
+    
+    .no-results::before {
+      content: '🔍';
+      display: block;
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 16px;
+      }
+      
+      .header {
+        padding: 20px 15px;
+      }
+      
+      .cute-title {
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+      }
+      
+      .filter-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .search-box {
+        width: 100%;
+      }
+      
+      .modal-container {
+        padding: 0 50px;
+      }
+      
+      .modal-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+      
+      .pet-grid, .battle-pass-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 15px;
+      }
+      
+      .pet-card, .battle-pass-card {
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title-wrapper">
+        <span class="cute-title">笑笑和屁屁</span>
+        <div class="main-title-wrapper">
+          <span class="decoration-star">⭐</span>
+          <span class="main-title">洛克王国 · 异色精灵代肝</span>
+          <span class="decoration-heart">💖</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="filter-toolbar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索精灵名称..." oninput="handleSearch(this.value)" />
+      </div>
+      <select class="filter-select" id="groupFilter" onchange="handleFilterChange(this.value)">
+        <option value="all">全部精灵筛选</option>
+        <option value="赛季异色">赛季异色</option>
+        <option value="赛季奇遇异色">赛季奇遇异色</option>
+        <option value="活动异色">活动异色</option>
+        <option value="赛季战令异色">赛季战令异色</option>
+      </select>
+      <button class="sort-btn" id="sortBtn" onclick="handleSort()">
+        价格排序 <span class="arrow">▼</span>
+      </button>
+      <div class="result-count" id="resultCount">共 0 只精灵</div>
+    </div>
+    
+    <div id="content">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        <span>正在召唤精灵中...</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal-overlay" id="imageModal">
+    <div class="modal-container">
+      <button class="modal-nav-btn prev disabled" id="prevBtn" onclick="navigatePet(-1)">‹</button>
+      <button class="modal-nav-btn next" id="nextBtn" onclick="navigatePet(1)">›</button>
+      <div class="modal-content" id="modalContent">
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+        <div class="modal-image-wrapper">
+          <img class="modal-image" id="modalImage" src="" alt="" />
+        </div>
+        <div class="modal-name" id="modalName"></div>
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-counter" id="modalCounter"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="pets.js"></script>
+  <script>
+    let allPets = [];
+    let filteredPets = [];
+    let currentPetIndex = 0;
+    let isSortedDesc = true;
+    let searchQuery = '';
+    let groupFilter = 'all';
+    let isAnimating = false;
+    
+    const GROUP_BATTLE_PASS = 'season-battle-pass';
+    const GROUP_SEASON = '赛季异色';
+    const GROUP_ADVENTURE = '赛季奇遇异色';
+    const GROUP_ACTIVITY = '活动异色';
+    const GROUP_BATTLE_PASS_CN = '赛季战令异色';
+    
+    async function fetchPets() {
+      const content = document.getElementById('content');
+      
+      try {
+        const response = await fetch('http://localhost:3000/api/pets');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const pets = await response.json();
+        initPets(pets);
+      } catch (error) {
+        console.warn('Backend service unavailable, using local data:', error);
+        initPets(petsData);
+      }
+    }
+    
+    function initPets(pets) {
+      allPets = pets;
+      applyFiltersAndSort();
+      parseURLParams();
+    }
+    
+    function applyFiltersAndSort() {
+      filteredPets = allPets.filter(pet => {
+        const matchesSearch = searchQuery === '' || pet.name.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesGroup = groupFilter === 'all' || pet.group === groupFilter;
+        return matchesSearch && matchesGroup;
+      });
+      
+      filteredPets.sort((a, b) => isSortedDesc ? b.price - a.price : a.price - b.price);
+      
+      updateResultCount();
+      renderPets();
+      updateURL();
+    }
+    
+    function parseURLParams() {
+      const params = new URLSearchParams(window.location.search);
+      const search = params.get('search');
+      const group = params.get('group');
+      const sort = params.get('sort');
+      
+      if (search) { searchQuery = search; document.getElementById('searchInput').value = search; }
+      if (group) { groupFilter = group; document.getElementById('groupFilter').value = group; }
+      if (sort === 'asc') { isSortedDesc = false; document.getElementById('sortBtn').classList.remove('active'); }
+      
+      applyFiltersAndSort();
+    }
+    
+    function updateURL() {
+      const params = new URLSearchParams();
+      if (searchQuery) params.set('search', searchQuery);
+      if (groupFilter !== 'all') params.set('group', groupFilter);
+      if (!isSortedDesc) params.set('sort', 'asc');
+      window.history.replaceState({}, '', params.toString() ? '?' + params.toString() : window.location.pathname);
+    }
+    
+    function updateResultCount() {
+      document.getElementById('resultCount').textContent = `共 ${filteredPets.length} 只精灵`;
+    }
+    
+    function renderPets() {
+      const content = document.getElementById('content');
+      content.classList.add('fading');
+      
+      setTimeout(() => {
+        const showAll = groupFilter === 'all';
+        
+        let html = '';
+        
+        if (groupFilter === GROUP_BATTLE_PASS_CN) {
+          html += renderBattlePassSection(filteredPets);
+        } else if (showAll) {
+          const normalPets = filteredPets.filter(p => p.group !== GROUP_BATTLE_PASS_CN);
+          const battlePassPets = filteredPets.filter(p => p.group === GROUP_BATTLE_PASS_CN);
+          
+          html += renderNormalGrid(normalPets);
+          
+          if (battlePassPets.length > 0) {
+            html += renderBattlePassSection(battlePassPets);
+          }
+        } else {
+          html += renderNormalGrid(filteredPets);
+        }
+        
+        if (filteredPets.length === 0) {
+          html = '<div class="no-results">没有找到匹配的精灵，换个关键词试试吧~</div>';
+        }
+        
+        content.innerHTML = html;
+        content.classList.remove('fading');
+      }, 300);
+    }
+    
+    function renderNormalGrid(pets) {
+      let html = '<div class="pet-grid">';
+      
+      pets.forEach(pet => {
+        const cardClass = getCardClass(pet.group);
+        const imageUrl = pet.image_url || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"%3E%3Crect fill="%23e1f5fe" width="120" height="120" rx="12"/%3E%3Ctext fill="%2300838f" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3E暂无图片%3C/text%3E%3C/svg%3E';
+        
+        html += `
+          <div class="pet-card ${cardClass}" onclick="openModal(${filteredPets.indexOf(pet)})">
+            <img class="pet-image" src="${imageUrl}" alt="${pet.name}" />
+            <div class="pet-name">${pet.name}</div>
+            <div class="pet-price">¥${pet.price}</div>
+          </div>
+        `;
+      });
+      
+      html += '</div>';
+      return html;
+    }
+    
+    function getCardClass(group) {
+      if (group === GROUP_SEASON) return 'season';
+      if (group === GROUP_ADVENTURE) return 'adventure';
+      if (group === GROUP_ACTIVITY) return 'activity';
+      return 'season';
+    }
+    
+    function renderBattlePassSection(pets) {
+      let html = `<div class="battle-pass-wrapper">
+        <div class="battle-pass-section">
+          <div class="battle-pass-header">
+            <div class="battle-pass-icon">⭐</div>
+            <h3>赛季战令异色</h3>
+          </div>
+          <div class="battle-pass-grid">`;
+      
+      pets.forEach(pet => {
+        const imageUrl = pet.image_url || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"%3E%3Crect fill="%231a237e" width="120" height="120" rx="12"/%3E%3Ctext fill="%23ffb74d" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3E暂无图片%3C/text%3E%3C/svg%3E';
+        html += `
+          <div class="battle-pass-card" onclick="openModal(${filteredPets.indexOf(pet)})">
+            <img class="battle-pass-image" src="${imageUrl}" alt="${pet.name}" />
+            <div class="battle-pass-name">${pet.name}</div>
+            <div class="battle-pass-price">¥${pet.price}</div>
+          </div>
+        `;
+      });
+      
+      html += '</div></div></div>';
+      return html;
+    }
+    
+    function openModal(index) {
+      if (isAnimating) return;
+      currentPetIndex = index;
+      updateModalContent();
+      document.getElementById('imageModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function updateModalContent() {
+      const pet = filteredPets[currentPetIndex];
+      if (!pet) return;
+      
+      const modalImage = document.getElementById('modalImage');
+      const modalName = document.getElementById('modalName');
+      const modalPrice = document.getElementById('modalPrice');
+      const modalCounter = document.getElementById('modalCounter');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      const imageUrl = pet.image_url || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"%3E%3Crect fill="%23e1f5fe" width="120" height="120" rx="12"/%3E%3Ctext fill="%2300838f" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3E暂无图片%3C/text%3E%3C/svg%3E';
+      
+      modalImage.src = imageUrl;
+      modalName.textContent = pet.name;
+      modalPrice.textContent = '¥' + pet.price;
+      modalCounter.textContent = `${currentPetIndex + 1} / ${filteredPets.length}`;
+      
+      prevBtn.classList.toggle('disabled', currentPetIndex === 0);
+      nextBtn.classList.toggle('disabled', currentPetIndex === filteredPets.length - 1);
+    }
+    
+    function navigatePet(direction) {
+      if (isAnimating) return;
+      const newIndex = currentPetIndex + direction;
+      if (newIndex < 0 || newIndex >= filteredPets.length) return;
+      
+      isAnimating = true;
+      const modalContent = document.getElementById('modalContent');
+      
+      modalContent.classList.add(direction > 0 ? 'slide-left' : 'slide-right');
+      
+      setTimeout(() => {
+        currentPetIndex = newIndex;
+        updateModalContent();
+        modalContent.classList.remove('slide-left', 'slide-right');
+        modalContent.classList.add('fade-in');
+        
+        setTimeout(() => {
+          modalContent.classList.remove('fade-in');
+          isAnimating = false;
+        }, 300);
+      }, 200);
+    }
+    
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    function handleSearch(query) {
+      searchQuery = query.trim();
+      applyFiltersAndSort();
+    }
+    
+    function handleFilterChange(value) {
+      groupFilter = value;
+      applyFiltersAndSort();
+    }
+    
+    function handleSort() {
+      isSortedDesc = !isSortedDesc;
+      const btn = document.getElementById('sortBtn');
+      btn.classList.toggle('active', isSortedDesc);
+      btn.querySelector('.arrow').textContent = isSortedDesc ? '▼' : '▲';
+      applyFiltersAndSort();
+    }
+    
+    document.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('imageModal');
+      if (!modal.classList.contains('active')) return;
+      
+      if (e.key === 'Escape') closeModal();
+      else if (e.key === 'ArrowLeft') navigatePet(-1);
+      else if (e.key === 'ArrowRight') navigatePet(1);
+    });
+    
+    document.getElementById('imageModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    
+    document.addEventListener('DOMContentLoaded', fetchPets);
+  </script>
+</body>
+</html>
