@@ -1012,7 +1012,7 @@
         
         html += `
           <div class="pet-card ${cardClass}" onclick="openModal(${filteredPets.indexOf(pet)})">
-            <img class="pet-image" src="${imageUrl}" alt="${pet.name}" />
+            <img class="pet-image" src="${imageUrl}" alt="${pet.name}" loading="lazy" />
             <div class="pet-name">${pet.name}</div>
             <div class="pet-price">¥${pet.price}</div>
           </div>
@@ -1043,7 +1043,7 @@
         const imageUrl = pet.image_url || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"%3E%3Crect fill="%231a237e" width="120" height="120" rx="12"/%3E%3Ctext fill="%23ffb74d" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3E暂无图片%3C/text%3E%3C/svg%3E';
         html += `
           <div class="battle-pass-card" onclick="openModal(${filteredPets.indexOf(pet)})">
-            <img class="battle-pass-image" src="${imageUrl}" alt="${pet.name}" />
+            <img class="battle-pass-image" src="${imageUrl}" alt="${pet.name}" loading="lazy" />
             <div class="battle-pass-name">${pet.name}</div>
             <div class="battle-pass-price">¥${pet.price}</div>
           </div>
