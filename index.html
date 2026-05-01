@@ -319,14 +319,16 @@
     }
     
     .pet-card {
-      border-radius: 20px;
-      padding: 16px;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: 24px;
+      padding: 22px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       cursor: pointer;
       border: 3px solid;
       position: relative;
       overflow: hidden;
       text-align: center;
+      background: #FFFFFF;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     }
     
     .pet-card::before {
@@ -336,44 +338,45 @@
       right: -50%;
       width: 100%;
       height: 100%;
-      opacity: 0.3;
+      opacity: 0.2;
       border-radius: 50%;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     
     .pet-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 15px 40px;
+      transform: translateY(-15px) scale(1.08);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
     }
     
     .pet-card:hover::before {
-      transform: scale(2);
-      opacity: 0.5;
+      transform: scale(2.5);
+      opacity: 0.4;
     }
     
     .pet-image {
       width: 100%;
       aspect-ratio: 1/1;
       object-fit: contain;
-      border-radius: 14px;
-      margin-bottom: 12px;
-      border: 2px dashed;
-      padding: 10px;
-      transition: all 0.3s ease;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      border: 3px solid;
+      padding: 16px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       position: relative;
       z-index: 1;
+      background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
     }
     
     .pet-card:hover .pet-image {
-      transform: scale(1.05);
+      transform: scale(1.12);
     }
     
     .pet-name {
-      font-size: 1.15rem;
+      font-size: 1.3rem;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       font-weight: bold;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       position: relative;
       z-index: 1;
       text-shadow: none;
@@ -382,37 +385,37 @@
     }
     
     .pet-price {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       text-align: center;
       font-weight: bold;
-      padding: 8px 16px;
-      border-radius: 20px;
+      padding: 10px 22px;
+      border-radius: 24px;
       display: inline-block;
       margin: 0 auto;
-      box-shadow: 0 3px 12px;
+      box-shadow: 0 5px 15px;
       border: 2px solid;
       position: relative;
       z-index: 1;
     }
     
     .pet-card.season {
-      background: linear-gradient(145deg, #FFFFFF 0%, #E1F5FE 100%);
+      background: linear-gradient(145deg, #FFFFFF 0%, #F0FCFF 100%);
       border-color: #4DD0E1;
-      box-shadow: 0 6px 25px rgba(77, 208, 225, 0.12);
+      box-shadow: 0 8px 30px rgba(77, 208, 225, 0.15);
     }
     
     .pet-card.season::before {
-      background: radial-gradient(circle, rgba(77, 208, 225, 0.3) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(77, 208, 225, 0.25) 0%, transparent 70%);
     }
     
     .pet-card.season:hover {
       border-color: #00838F;
-      box-shadow: 0 15px 40px rgba(77, 208, 225, 0.3);
+      box-shadow: 0 20px 50px rgba(77, 208, 225, 0.28);
     }
     
     .pet-card.season .pet-image {
-      background: linear-gradient(135deg, #E1F5FE 0%, #B2EBF2 100%);
-      border-color: #4DD0E1;
+      background: linear-gradient(135deg, #E8F9FC 0%, #C8F7FC 100%);
+      border-color: #80DEEA;
     }
     
     .pet-card.season .pet-name {
@@ -422,63 +425,63 @@
     }
     
     .pet-card.season .pet-price {
-      background: linear-gradient(135deg, #E1F5FE 0%, #B2EBF2 100%);
-      color: #4DD0E1;
-      border-color: #00838F;
-      box-shadow: 0 3px 12px rgba(77, 208, 225, 0.2);
+      background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 100%);
+      color: #00838F;
+      border-color: #4DD0E1;
+      box-shadow: 0 5px 15px rgba(77, 208, 225, 0.25);
     }
     
     .pet-card.adventure {
-      background: linear-gradient(145deg, #FFFFFF 0%, #F3E5F5 100%);
-      border-color: #7C4DFF;
-      box-shadow: 0 6px 25px rgba(124, 77, 255, 0.12);
+      background: linear-gradient(145deg, #FFFFFF 0%, #FCE4EC 100%);
+      border-color: #CE93D8;
+      box-shadow: 0 8px 30px rgba(124, 77, 255, 0.15);
     }
     
     .pet-card.adventure::before {
-      background: radial-gradient(circle, rgba(124, 77, 255, 0.3) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(171, 71, 188, 0.25) 0%, transparent 70%);
     }
     
     .pet-card.adventure:hover {
-      border-color: #5C6BC0;
-      box-shadow: 0 15px 40px rgba(124, 77, 255, 0.3);
+      border-color: #7B1FA2;
+      box-shadow: 0 20px 50px rgba(124, 77, 255, 0.28);
     }
     
     .pet-card.adventure .pet-image {
-      background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
-      border-color: #7C4DFF;
+      background: linear-gradient(135deg, #FCE4EC 0%, #F3E5F5 100%);
+      border-color: #CE93D8;
     }
     
     .pet-card.adventure .pet-name {
-      color: #4527A0;
+      color: #5D4037;
       text-shadow: none;
       -webkit-font-smoothing: antialiased;
     }
     
     .pet-card.adventure .pet-price {
-      background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
-      color: #7C4DFF;
-      border-color: #5C6BC0;
-      box-shadow: 0 3px 12px rgba(124, 77, 255, 0.2);
+      background: linear-gradient(135deg, #FCE4EC 0%, #F3E5F5 100%);
+      color: #7B1FA2;
+      border-color: #CE93D8;
+      box-shadow: 0 5px 15px rgba(124, 77, 255, 0.25);
     }
     
     .pet-card.activity {
       background: linear-gradient(145deg, #FFFFFF 0%, #FFF8E1 100%);
       border-color: #FFB74D;
-      box-shadow: 0 6px 25px rgba(255, 183, 77, 0.12);
+      box-shadow: 0 8px 30px rgba(255, 183, 77, 0.15);
     }
     
     .pet-card.activity::before {
-      background: radial-gradient(circle, rgba(255, 183, 77, 0.3) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255, 152, 0, 0.25) 0%, transparent 70%);
     }
     
     .pet-card.activity:hover {
-      border-color: #FF8F00;
-      box-shadow: 0 15px 40px rgba(255, 183, 77, 0.3);
+      border-color: #FF6F00;
+      box-shadow: 0 20px 50px rgba(255, 183, 77, 0.28);
     }
     
     .pet-card.activity .pet-image {
       background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
-      border-color: #FFB74D;
+      border-color: #FFCC80;
     }
     
     .pet-card.activity .pet-name {
@@ -489,9 +492,9 @@
     
     .pet-card.activity .pet-price {
       background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
-      color: #FFB74D;
-      border-color: #FF8F00;
-      box-shadow: 0 3px 12px rgba(255, 183, 77, 0.2);
+      color: #E65100;
+      border-color: #FFB74D;
+      box-shadow: 0 5px 15px rgba(255, 183, 77, 0.25);
     }
     
     .battle-pass-wrapper {
@@ -566,40 +569,64 @@
     }
     
     .battle-pass-card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 16px;
-      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 20px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       cursor: pointer;
-      border: 2px solid rgba(255, 183, 77, 0.3);
+      border: 3px solid rgba(255, 183, 77, 0.4);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .battle-pass-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 183, 77, 0.15) 0%, transparent 70%);
+      transition: all 0.4s ease;
     }
     
     .battle-pass-card:hover {
-      transform: translateY(-6px);
-      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-12px) scale(1.08);
+      background: rgba(255, 255, 255, 0.12);
       border-color: #FFB74D;
-      box-shadow: 0 10px 30px rgba(255, 183, 77, 0.2);
+      box-shadow: 0 20px 50px rgba(255, 183, 77, 0.3), 0 0 40px rgba(255, 183, 77, 0.2);
+    }
+    
+    .battle-pass-card:hover::before {
+      transform: scale(2.5);
+      opacity: 0.6;
     }
     
     .battle-pass-image {
       width: 100%;
       aspect-ratio: 1/1;
       object-fit: contain;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      margin-bottom: 10px;
-      padding: 8px;
+      background: linear-gradient(135deg, rgba(255, 183, 77, 0.1) 0%, rgba(255, 183, 77, 0.05) 100%);
+      border-radius: 16px;
+      margin-bottom: 14px;
+      padding: 12px;
+      border: 2px solid rgba(255, 183, 77, 0.3);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .battle-pass-card:hover .battle-pass-image {
+      transform: scale(1.1);
     }
     
     .battle-pass-name {
-      color: #FF8F00;
-      font-size: 1.1rem;
+      color: #FFB74D;
+      font-size: 1.25rem;
       font-weight: bold;
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-      text-shadow: none;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 10px rgba(255, 183, 77, 0.5);
       -webkit-font-smoothing: antialiased;
     }
     
