@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>洛克王国 · 异色精灵代肝</title>
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
-    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
     
     :root {
       --color-primary: #4DD0E1;
@@ -912,8 +911,6 @@
     const GROUP_BATTLE_PASS_CN = '赛季战令异色';
     
     async function fetchPets() {
-      const content = document.getElementById('content');
-      
       try {
         const response = await fetch('http://localhost:3000/api/pets');
         if (!response.ok) throw new Error('Network response was not ok');
