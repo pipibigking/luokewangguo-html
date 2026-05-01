@@ -610,29 +610,29 @@
       transform: translateY(-50%);
       width: 56px;
       height: 56px;
-      border: none;
+      border: 2px solid #FF8F00;
       border-radius: 50%;
-      background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 100%);
-      color: #1A237E;
+      background: linear-gradient(135deg, #FFB74D 0%, #FF8F00 100%);
+      color: #FFFFFF;
       font-size: 1.8rem;
       cursor: pointer;
-      opacity: 0.85;
+      opacity: 0.9;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 6px 20px rgba(255, 183, 77, 0.4);
       z-index: 10;
     }
     
     .modal-nav-btn:hover:not(.disabled) {
       opacity: 1;
       transform: translateY(-50%) scale(1.15);
-      box-shadow: 0 8px 25px rgba(77, 208, 225, 0.5);
+      box-shadow: 0 8px 25px rgba(255, 183, 77, 0.5);
     }
     
     .modal-nav-btn.disabled {
-      opacity: 0.25;
+      opacity: 0.3;
       cursor: not-allowed;
       filter: grayscale(100%);
       transform: translateY(-50%) scale(0.95);
@@ -647,15 +647,15 @@
     }
     
     .modal-content {
-      background: #FFFFFF;
+      background: linear-gradient(135deg, #D32F2F 0%, #C62828 100%);
       padding: 0;
       border-radius: 24px;
       max-width: 90vw;
-      max-height: 90vh;
+      max-height: 95vh;
       text-align: center;
       cursor: default;
-      box-shadow: 0 25px 80px rgba(26, 35, 126, 0.4);
-      border: none;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+      border: 4px solid #EFEBE9;
       position: relative;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       overflow: hidden;
@@ -663,7 +663,7 @@
     
     .modal-content.battle-pass {
       background: linear-gradient(135deg, #1A237E 0%, #283593 50%, #1A237E 100%);
-      border: 3px solid #FFB74D;
+      border: 4px solid #FFB74D;
       box-shadow: 0 25px 80px rgba(26, 35, 126, 0.6), 0 0 60px rgba(255, 183, 77, 0.3);
     }
     
@@ -692,6 +692,62 @@
       }
     }
     
+    .modal-top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: #EFEBE9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 20;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+    
+    .modal-top-bar::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 8px;
+      background: #EFEBE9;
+      border-radius: 0 0 50% 50%;
+    }
+    
+    .modal-number {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #D32F2F;
+      background: #FFFFFF;
+      padding: 4px 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-badges {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .modal-badge {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #FFB74D 0%, #FF8F00 100%);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.9rem;
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    
     .modal-header {
       position: relative;
       width: 100%;
@@ -699,8 +755,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);
+      background: linear-gradient(135deg, #D32F2F 0%, #C62828 100%);
       overflow: hidden;
+      padding-top: 30px;
+    }
+    
+    .modal-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40 L20 20 L40 40 L20 60 Z' stroke='%23FFB74D' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
     }
     
     .modal-content.battle-pass .modal-header {
@@ -712,7 +780,7 @@
       max-height: 85%;
       object-fit: contain;
       transition: transform 0.4s ease;
-      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
     }
     
     .modal-content:hover .modal-image {
@@ -742,16 +810,18 @@
     }
     
     .modal-body {
-      padding: 24px 30px 30px;
+      padding: 20px 24px 24px;
+      background: #EFEBE9;
     }
     
     .modal-name {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: bold;
-      color: #1A237E;
-      margin-bottom: 8px;
+      color: #3E2723;
+      margin-bottom: 12px;
       text-shadow: none;
       -webkit-font-smoothing: antialiased;
+      letter-spacing: 2px;
     }
     
     .modal-content.battle-pass .modal-name {
@@ -759,31 +829,43 @@
       text-shadow: 0 2px 10px rgba(255, 183, 77, 0.5);
     }
     
-    .modal-group {
-      font-size: 0.9rem;
-      color: #666;
+    .modal-stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #6D4C41;
       margin-bottom: 16px;
-      padding: 6px 16px;
-      background: #F5F5F5;
-      border-radius: 20px;
+      padding: 0 8px;
+    }
+    
+    .modal-group {
+      font-size: 0.85rem;
+      color: #6D4C41;
+      margin-bottom: 16px;
+      padding: 6px 14px;
+      background: #FFFFFF;
+      border-radius: 16px;
       display: inline-block;
+      border: 1px solid #D7CCC8;
     }
     
     .modal-content.battle-pass .modal-group {
       color: #E0E0E0;
       background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
     }
     
     .modal-price {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: bold;
-      color: #4DD0E1;
+      color: #FFFFFF;
       margin-top: 12px;
-      padding: 12px 28px;
-      background: linear-gradient(135deg, #E1F5FE 0%, #B2EBF2 100%);
-      border-radius: 30px;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, #FFB74D 0%, #FF8F00 100%);
+      border-radius: 20px;
       display: inline-block;
-      box-shadow: 0 4px 15px rgba(77, 208, 225, 0.3);
+      box-shadow: 0 4px 12px rgba(255, 183, 77, 0.4);
+      border: 2px solid #FF8F00;
     }
     
     .modal-content.battle-pass .modal-price {
@@ -794,7 +876,7 @@
     
     .modal-counter {
       position: absolute;
-      bottom: 20px;
+      bottom: 16px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 0.85rem;
@@ -936,12 +1018,23 @@
       <button class="modal-nav-btn next" id="nextBtn" onclick="navigatePet(1)">›</button>
       <div class="modal-content" id="modalContent">
         <button class="close-btn" onclick="closeModal()">×</button>
+        <div class="modal-top-bar">
+          <div class="modal-number" id="modalNumber">#001</div>
+          <div class="modal-badges">
+            <div class="modal-badge">★</div>
+            <div class="modal-badge">★</div>
+          </div>
+        </div>
         <div class="modal-header">
           <div class="modal-loading" id="modalLoading"></div>
           <img class="modal-image" id="modalImage" src="" alt="" />
         </div>
         <div class="modal-body">
           <div class="modal-name" id="modalName"></div>
+          <div class="modal-stats" id="modalStats">
+            <span>属性</span>
+            <span>稀有度</span>
+          </div>
           <div class="modal-group" id="modalGroup"></div>
           <div class="modal-price" id="modalPrice"></div>
         </div>
@@ -1129,11 +1222,13 @@
       const modalGroup = document.getElementById('modalGroup');
       const modalPrice = document.getElementById('modalPrice');
       const modalCounter = document.getElementById('modalCounter');
+      const modalNumber = document.getElementById('modalNumber');
+      const modalStats = document.getElementById('modalStats');
       const prevBtn = document.getElementById('prevBtn');
       const nextBtn = document.getElementById('nextBtn');
       const modalLoading = document.getElementById('modalLoading');
       
-      const imageUrl = pet.image_url || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"%3E%3Crect fill="%23e1f5fe" width="120" height="120" rx="12"/%3E%3Ctext fill="%2300838f" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3E暂无图片%3C/text%3E%3C/svg%3E';
+      const imageUrl = pet.image_url || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"%3E%3Crect fill="%23D32F2F" width="120" height="120" rx="12"/%3E%3Ctext fill="%23FFB74D" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3E暂无图片%3C/text%3E%3C/svg%3E';
       
       modalContent.classList.remove('battle-pass');
       if (pet.group === GROUP_BATTLE_PASS_CN) {
@@ -1156,7 +1251,12 @@
       };
       img.src = imageUrl;
       
+      const element = pet.element || '普通系';
+      const rarity = pet.rarity || '普通';
+      
+      modalNumber.textContent = '#' + String(pet.id).padStart(3, '0');
       modalName.textContent = pet.name;
+      modalStats.innerHTML = `<span>${element}</span><span>${rarity}</span>`;
       modalGroup.textContent = pet.group;
       modalPrice.textContent = '¥' + pet.price;
       modalCounter.textContent = `${currentPetIndex + 1} / ${filteredPets.length}`;
