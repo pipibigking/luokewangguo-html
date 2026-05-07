@@ -28,6 +28,7 @@
 luokewangguo-html/
 ├── index.html          # 主页面
 ├── pets.js             # 宠物数据和交互逻辑
+├── auth.js             # 管理员密码配置（敏感信息）
 ├── images/             # 宠物图片资源
 │   ├── 大耳帽兜.png
 │   ├── 治愈兔.png
