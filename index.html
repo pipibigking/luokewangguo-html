@@ -1,89 +1,130 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>洛克王国 · 异色精灵代肝</title>
-  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>洛克王国 · 异色精灵代肝</title>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <div class="title-wrapper">
-        <h1 class="cute-title">洛克王国</h1>
-        <p class="cute-subtitle">异色精灵图鉴</p>
-      </div>
-    </div>
-
-    <div class="nav">
-      <button class="nav-btn active" data-group="all" onclick="handleGroupFilter('all')">全部</button>
-      <button class="nav-btn" data-group="赛季异色" onclick="handleGroupFilter('赛季异色')">赛季异色</button>
-      <button class="nav-btn" data-group="赛季奇遇异色" onclick="handleGroupFilter('赛季奇遇异色')">赛季奇遇</button>
-      <button class="nav-btn" data-group="活动异色" onclick="handleGroupFilter('活动异色')">活动异色</button>
-      <button class="nav-btn" data-group="season-battle-pass" onclick="handleGroupFilter('season-battle-pass')">赛季战令</button>
-    </div>
-
-    <div class="search-bar">
-      <input type="text" id="searchInput" class="search-input" placeholder="搜索精灵名称..." />
-      <button class="search-btn" id="searchBtn" onclick="handleSearch()">🔍 搜索</button>
-    </div>
-
-    <div class="card-grid" id="cardGrid">
-      <div class="loading">
-        <div class="loading-spinner"></div>
-        <span>正在召唤精灵中...</span>
-      </div>
-    </div>
-
-    <div class="footer">
-      <p>🎮 洛克王国异色精灵图鉴 · 代肝服务</p>
-    </div>
-  </div>
-
-  <button class="admin-btn" onclick="openAdminLogin()">⚙️</button>
-
-  <div class="modal-overlay" id="adminLoginModal">
-    <div class="modal">
-      <button class="modal-close" onclick="closeAdminLogin()">×</button>
-      <h2>🔐 管理登录</h2>
-      <p>请输入管理员密码以访问内容管理</p>
-      <div class="modal-error" id="adminLoginError">密码输入错误，请重新输入</div>
-      <input type="password" id="adminPassword" placeholder="输入管理员密码" />
-      <button onclick="verifyAdminPassword()">登 录</button>
-    </div>
-  </div>
-
-  <div class="admin-panel" id="adminPanel">
-    <div class="admin-header">
-      <div class="admin-title">⚙️ 内容管理系统</div>
-      <div class="admin-stats">
-        <div class="admin-stat">
-          <div class="admin-stat-value" id="adminTotalCount">0</div>
-          <div class="admin-stat-label">总卡片数</div>
+    <div class="container">
+        <div class="header">
+            <div class="title-wrapper">
+                <span class="cute-title">笑笑和屁屁</span>
+                <div class="main-title-wrapper">
+                    <span class="decoration-star">⭐</span>
+                    <span class="main-title">洛克王国 · 异色精灵代肝</span>
+                    <span class="decoration-heart">💖</span>
+                </div>
+            </div>
         </div>
-        <div class="admin-stat">
-          <div class="admin-stat-value" id="adminModifiedCount">0</div>
-          <div class="admin-stat-label">已修改</div>
+
+        <div class="announcement-bar hidden" id="announcementBar">
+            <span class="announcement-icon">📢</span>
+            <span class="announcement-content" id="announcementContent"></span>
         </div>
-      </div>
-      <div class="admin-actions">
-        <button class="admin-action-btn save" onclick="saveAdminChanges()">💾 保存</button>
-        <button class="admin-action-btn cancel" onclick="cancelAdminChanges()">🔄 重置</button>
-        <button class="admin-action-btn close" onclick="closeAdminPanel()">✕ 关闭</button>
-      </div>
-    </div>
-    <div class="admin-search">
-      <input type="text" class="admin-search-input" placeholder="🔍 搜索卡片名称..." oninput="filterAdminCards(this.value)" />
-    </div>
-    <div class="admin-card-list" id="adminCardList"></div>
-  </div>
 
-  <div class="save-status" id="saveStatus"></div>
+        <div class="filter-toolbar">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索精灵名称..." oninput="handleSearch(this.value)" />
+            </div>
+            <select class="filter-select" id="groupFilter" onchange="handleFilterChange(this.value)">
+                <option value="all">全部精灵筛选</option>
+                <option value="赛季异色">赛季异色</option>
+                <option value="赛季奇遇异色">赛季奇遇异色</option>
+                <option value="活动异色">活动异色</option>
+                <option value="赛季战令异色">赛季战令异色</option>
+            </select>
+            <button class="sort-btn" id="sortBtn" onclick="handleSort()">
+                价格排序 <span class="arrow">▼</span>
+            </button>
+            <div class="result-count" id="resultCount">共 0 只精灵</div>
+        </div>
 
-  <script src="auth.js"></script>
-  <script src="pets.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/admin.js"></script>
+        <div id="content">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <span>正在召唤精灵中...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-container">
+            <button class="modal-nav-btn prev disabled" id="prevBtn" onclick="navigatePet(-1)">‹</button>
+            <button class="modal-nav-btn next" id="nextBtn" onclick="navigatePet(1)">›</button>
+            <div class="modal-content" id="modalContent">
+                <button class="close-btn" onclick="closeModal()">×</button>
+                <div class="modal-header">
+                    <div class="modal-loading" id="modalLoading"></div>
+                    <img class="modal-image" id="modalImage" src="" alt="" />
+                </div>
+                <div class="modal-body">
+                    <div class="modal-name" id="modalName"></div>
+                    <div class="modal-group" id="modalGroup"></div>
+                    <div class="modal-price" id="modalPrice"></div>
+                </div>
+                <div class="modal-counter" id="modalCounter"></div>
+            </div>
+        </div>
+    </div>
+
+    <button class="admin-fab" id="adminFab" onclick="openAdminLogin()">⚙️</button>
+
+    <div class="admin-login-modal" id="adminLoginModal">
+        <div class="admin-login-box">
+            <button class="admin-close-login" onclick="closeAdminLogin()">×</button>
+            <h2>🔐 管理登录</h2>
+            <p>请输入管理员密码以访问内容管理</p>
+            <input type="password" id="adminPassword" placeholder="输入管理员密码" onkeypress="handleAdminKeypress(event)" />
+            <button onclick="verifyAdminPassword()">登 录</button>
+            <div class="admin-login-error" id="adminLoginError">密码错误，请重新输入</div>
+            <div class="admin-login-lockout" id="adminLoginLockout"></div>
+        </div>
+    </div>
+
+    <div class="admin-panel" id="adminPanel">
+        <div class="container" style="max-width: 1400px; margin: 0 auto;">
+            <div class="admin-header">
+                <h2>⚙️ 内容管理系统</h2>
+                <div class="admin-header-actions">
+                    <button class="admin-btn admin-btn-save" onclick="saveAdminChanges()">💾 保存修改</button>
+                    <button class="admin-btn admin-btn-reset" onclick="resetAdminChanges()">🔄 重置</button>
+                    <button class="admin-btn admin-btn-close" onclick="closeAdminPanel()">✕ 关闭</button>
+                </div>
+            </div>
+
+            <div class="admin-stats">
+                <div class="admin-stat">
+                    <div class="admin-stat-value" id="adminTotalCount">0</div>
+                    <div class="admin-stat-label">总卡片数</div>
+                </div>
+                <div class="admin-stat">
+                    <div class="admin-stat-value" id="adminModifiedCount">0</div>
+                    <div class="admin-stat-label">已修改</div>
+                </div>
+                <div class="admin-stat">
+                    <div class="admin-stat-label">修改的数据会保存在浏览器本地</div>
+                </div>
+            </div>
+
+            <div class="admin-announcement-field">
+                <h3>📢 公告内容编辑</h3>
+                <textarea id="adminAnnouncementInput" placeholder="在此输入公告内容，保存后将在页面顶部显示。留空则隐藏公告栏。"></textarea>
+                <p class="hint">支持多行文本，公告栏会在页面顶部、筛选工具栏上方显示</p>
+            </div>
+
+            <div class="admin-search-box">
+                <input type="text" id="adminSearchInput" placeholder="🔍 搜索卡片名称..." oninput="filterAdminCards(this.value)" />
+            </div>
+
+            <div class="admin-card-list" id="adminCardList"></div>
+        </div>
+    </div>
+
+    <script src="pets.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
